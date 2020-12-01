@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Firebae React Authentication
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Docs
+- firebase document -> https://firebase.google.com/docs/auth/web/manage-users
+- react-router-dom -> https://reactrouter.com/web/api/Router
 
-## Available Scripts
+## Package to be installed
+- firebase -> `npm install firebase`
+	- `import firebase from 'firebase/app'`
+	- `import 'firebase/auth'`
+- bootsrap -> `npm install bootstrap react-bootstrap`
 
-In the project directory, you can run:
+## Revise
+- React Context 
+	- `useContext()` -> Accepts a context object (the value returned form `React.createContext)` and returns the current context value for that context.
+	- The current context value is determined by the `value` prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+- Render
+	- React re-render the component wheneve its state changed line by line of code.
+- `defaultValue` props to set the default value of input element.
+- `Promise.all(promises).then(() => {}).catch(e => {});` (promises = array of promise)
 
-### `npm start`
+## Tricks
+- use `.env.local` to use all variables inside locally.
+- rename the property
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```JavaScript
+export default function PrivateRoute({ componet: Component, ...rest }) {
+	return ( <div><div> );
+}
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- create `Temporary Email`: https://temp-mail.org/en/
 
-### `npm test`
+## Lesson Learned
+- Different types of routers in react router -> https://learnwithparam.com/blog/different-types-of-router-in-react-router/
+	- MemoryRouter
+		- A router which doesn't change the URL in your browser instead it keeps the URL changes in memory.
+		- It is very useful for testing and non browser environments.
+		- But in browser, it doesn't have history. So you can't go back or forward using browser history.
+	- HashRouter 
+		- Hashed routes, you can go in history -> `https://example.com/#/`, `https://example.com/#/about`
+		- A router which uses client side hash routing.
+		- Whenever, there is a new route get rendered, it updated the browser URL with hash routes. (e.g., `/#/about`)
+		- Hash portion of the URL won't be handled by server, server will always send the `index.html` for every request and ignore hash value. Hash value will be handled by react router.
+		- It is used to support legacy browsers which usually doesn't support HTML pushState API
+		- As this technique is only intended to support legacy browsers, we encourage you to configure your server to work with `BrowserHistory` instead.
+	- BrowserRouter
+		- The widely popular router and a router for modern browsers which use HTML5 pushState API. (i.e., `pushState`, `replaceState` and `popState` API).
+- Legacy Browser Support (BrowserSwitcher internally)
+	- BrowserSwitcher is a Chrome module that listens to navigations, and automatically switches to another browser (typically IE) for a predefined set of URLs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Note & Keywords
+- Legacy browser
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Work Flow
+- Setup firebase
